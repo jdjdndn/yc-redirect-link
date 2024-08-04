@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  尝试替换页面上的重定向链接为真实链接
-// @author       您
+// @author       wcbblll
 // @match        *://*/*
 // @exclude       *://www.google.com/*
 // @exclude       *://www.google.com.hk/*
@@ -33,7 +33,6 @@
   // 自定义属性，用于判断链接是否经过修改
   const ycAttr = 'yc-changed'
   loopFunc(() => {
-    console.log('loop func');
     // 获取页面上的所有<a>标签
     const links = document.querySelectorAll(`a[href]:not([${ycAttr}])`);
     // 遍历链接
