@@ -6,9 +6,8 @@
 // @author       wcbblll
 // @match        *://*/*
 // @exclude       *://www.google.com/*
-// @exclude       *://www.google.com.hk/*
-// @exclude       *://github.com/*
 // @grant        none
+// @run-at            document-end
 // ==/UserScript==
 
 (function () {
@@ -37,14 +36,16 @@
     const links = document.querySelectorAll(`a[href]:not([${ycAttr}])`);
     // 遍历链接
     links.forEach(link => {
+      link.setAttribute(ycAttr, 'true')
       if (!link || !link.host) return
-      link.setAttribute('originUrl', decodeURIComponent(link.href))
       const linkUrl = decodeURIComponent(link.search)
-      const targetUrl = linkUrl.slice(linkUrl.indexOf('//'))
+      const sliceIndex = linkUrl.indexOf('//')
+      if (sliceIndex < 0) return
+      const targetUrl = linkUrl.slice(sliceIndex)
+      link.setAttribute('originUrl', decodeURIComponent(link.href))
       link.href = targetUrl
       link.ref = "nofollow noopener noreferrer"
       link.rel = "noopener noreferrer"
-      link.setAttribute(ycAttr, 'true')
     });
   })
 })();
