@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         yc-替换真实链接
+// @name         替换真实链接(yc-redirect-links)
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  尝试替换页面上的重定向链接为真实链接
